@@ -61,6 +61,9 @@ public class GSYVideoType {
     //是否使用硬解码优化
     private static boolean sTextureMediaPlay = false;
 
+    //是否使用单价播放/暂停
+    private static boolean isSingleUpPlay = false;
+
 
     /**
      * 使能硬解码，播放前设置
@@ -139,5 +142,13 @@ public class GSYVideoType {
      */
     public static void setScreenScaleRatio(float screenScaleRatio) {
         GSYVideoType.sScreenScaleRatio = screenScaleRatio;
+    }
+
+    public static void setSingleUpPlay(boolean isSingle){
+        isSingleUpPlay = isSingle;
+    }
+
+    public static boolean isSingleUpPlay(){
+        return isSingleUpPlay;
     }
 }

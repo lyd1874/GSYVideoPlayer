@@ -173,6 +173,17 @@ public class GSYSampleADVideoPlayer extends ListGSYVideoPlayer {
     }
 
     /**
+     * 广告期间不需要双击
+     */
+    @Override
+    protected void touchSingleUp() {
+        if (isAdModel) {
+            return;
+        }
+        super.touchSingleUp();
+    }
+
+    /**
      * 广告期间不需要触摸
      */
     @Override

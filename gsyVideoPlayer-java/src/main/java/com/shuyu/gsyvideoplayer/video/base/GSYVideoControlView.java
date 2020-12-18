@@ -30,6 +30,7 @@ import com.shuyu.gsyvideoplayer.listener.GSYVideoProgressListener;
 import com.shuyu.gsyvideoplayer.listener.LockClickListener;
 import com.shuyu.gsyvideoplayer.utils.CommonUtil;
 import com.shuyu.gsyvideoplayer.utils.Debuger;
+import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 
 import java.io.File;
 import java.util.Map;
@@ -431,8 +432,20 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
     protected GestureDetector gestureDetector = new GestureDetector(getContext().getApplicationContext(), new GestureDetector.SimpleOnGestureListener() {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-            touchDoubleUp();
+            //使用双击播放方式
+            if(!GSYVideoType.isSingleUpPlay()){
+                touchDoubleUp();
+            }
             return super.onDoubleTap(e);
+        }
+
+        @Override
+        public boolean onSingleTapUp(MotionEvent e) {
+            //使用单击播放方式
+            if(GSYVideoType.isSingleUpPlay()){
+                touchSingleUp();
+            }
+            return super.onSingleTapUp(e);
         }
 
         @Override
@@ -795,6 +808,17 @@ public abstract class GSYVideoControlView extends GSYVideoView implements View.O
      * 如果不需要，重载为空方法即可
      */
     protected void touchDoubleUp() {
+        if (!mHadPlay) {
+            return;
+        }
+        clickStartIcon();
+    }
+
+    /**
+     * 单击暂停/播放
+     * 如果不需要，重载为空方法即可
+     */
+    protected void touchSingleUp() {
         if (!mHadPlay) {
             return;
         }

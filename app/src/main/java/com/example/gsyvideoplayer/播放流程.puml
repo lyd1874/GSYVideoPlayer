@@ -1,0 +1,14 @@
+@startuml
+播放界面 -> StandardGSYVideoPlayer:startPlayLogic()
+StandardGSYVideoPlayer -> GSYVideoControlView:prepareVideo()
+GSYVideoControlView -> GSYVideoView:super.prepareVideo()
+GSYVideoView -> GSYVideoView:startPrepare()
+GSYVideoView -> GSYVideoViewBridge: getGSYVideoManager().prepare()
+GSYVideoViewBridge -> GSYVideoBaseManager: prepare()
+GSYVideoBaseManager -> GSYVideoBaseManager: sendMessage(HANDLER_PREPARE)
+GSYVideoBaseManager -> GSYVideoBaseManager: initVideo()
+/' GSYVideoBaseManager通过PlayerFactory.getPlayManager()来获取使用的播放内核 '/
+GSYVideoBaseManager -> IPlayerManager: initVideoPlayer()
+IPlayerManager -> IjkPlayerManager: initVideoPlayer()
+IjkPlayerManager -> IjkMediaPlayer: setDataSource()
+@enduml

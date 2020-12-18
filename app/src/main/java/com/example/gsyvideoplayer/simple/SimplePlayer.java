@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.example.gsyvideoplayer.R;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
+import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 
@@ -35,6 +36,7 @@ public class SimplePlayer extends AppCompatActivity {
         ImageView imageView = new ImageView(this);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         imageView.setImageResource(R.mipmap.xxx1);
+        GSYVideoType.setSingleUpPlay(true);
         videoPlayer.setThumbImageView(imageView);
         //增加title
         videoPlayer.getTitleTextView().setVisibility(View.VISIBLE);
